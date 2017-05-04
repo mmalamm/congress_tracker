@@ -57,6 +57,10 @@ const STATES = [ "AK",
                       "WY"];
 
 class StateButtons extends React.Component {
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+  }
   componentDidMount() {
 
     this.state = {};
@@ -66,15 +70,21 @@ class StateButtons extends React.Component {
              xhr.setRequestHeader("X-API-Key", "zUfM4EKVMG0qQPHM6dFZ4p0x6X1XWfQ5fky8voBh");
         }, success: function(data){
             window.senators = data.results[0].members;
-            console.log(data.results[0].members);
         }
       });
+  }
+
+  handleClick(e) {
+    let stateName = e.target.innerHTML;
+    let sens = senators.filter( senator => senator.state === stateName ).map( senator => senator.first_name + ' ' + senator.last_name );
+    console.log(stateName + ' senators: ' + sens[0] + ' and ' + sens[1]);
   }
 
   render() {
 
     const stateBtns = STATES.map(state => (
       <button
+        onClick={this.handleClick}
         key={state}>
         {state}
       </button>
@@ -87,6 +97,7 @@ class StateButtons extends React.Component {
         <ul>
           {stateBtns}
         </ul>
+
       </div>
     );
   }
