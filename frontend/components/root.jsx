@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import StateButtonsContainer from "./state_buttons_container";
 
 class Root extends React.Component {
   constructor(props) {
@@ -7,9 +8,9 @@ class Root extends React.Component {
   }
 
   render() {
-    debugger
+    // debugger
     return(
-      <Provider store={ store }>
+      <Provider store={ this.props.store }>
         <StateButtonsContainer />
       </Provider>
     );

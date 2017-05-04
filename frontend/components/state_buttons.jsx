@@ -65,11 +65,10 @@ class StateButtons extends React.Component {
         beforeSend: function(xhr) {
              xhr.setRequestHeader("X-API-Key", "zUfM4EKVMG0qQPHM6dFZ4p0x6X1XWfQ5fky8voBh");
         }, success: function(data){
-            senators = data.results[0].members;
-            console.log(senators);
+            window.senators = data.results[0].members;
+            console.log(data.results[0].members);
         }
       });
-      debugger
   }
 
   render() {
