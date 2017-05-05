@@ -137,6 +137,15 @@ class StateButtons extends React.Component {
 
       console.log(state_hash[stateName] + ' senators: ' + sens[0] + ' and ' + sens[1]);
 
+      let formatted_name = sens[1].replace(' ', '%20');
+      $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&titles=${formatted_name}&format=json&prop=pageimages&origin=*`, function(data) {
+          window.wiki_result = data.query.pages;
+          test_dest_img(wiki_result[Object.keys(window.wiki_result)[0]]);
+      });
+      const test_dest_img = ({ thumbnail }) => {
+        let piccy = thumbnail ? thumbnail.source : 'http://www.terry.uga.edu/digitalmarketing/images/icons/user.jpg';
+        $('#test-img').attr('src', piccy);
+      }
     };
 
     const state_ids_obj = { 0: "AR", 1: "CA", 2: "IL", 3: "KS", 4: "MS", 5: "OH", 6: "TX", 7: "AL", 8: "IA", 9: "LA", 10: "MN", 11: "MO", 12: "NE", 13: "AZ", 14: "CO", 15: "IN", 16: "MI", 17: "MT", 18: "NY", 19: "OR", 20: "VA", 21: "WY", 22: "NC", 23: "OK", 24: "TN", 25: "WI", 26: "AK", 27: "VT", 28: "ND", 29: "GA", 30: "ME", 31: "RI", 32: "WV", 33: "ID", 34: "SD", 35: "NM", 36: "WA", 37: "PA", 38: "FL", 39: "UT", 40: "KY", 41: "NH", 42: "SC", 43: "NV", 44: "HI", 45: "NY", 46: "CT", 47: "MD", 48: "MA", 49: "DE"};
@@ -228,6 +237,7 @@ class StateButtons extends React.Component {
           <div id='header'></div>
           <svg width="960" height="600"></svg>
           <div id='state-info'></div>
+          <img id='test-img' />
         </ul>
 
       </div>
