@@ -2,11 +2,27 @@
 <html>
 <head>
 	<title></title>
+	<style>
+	.states :hover {
+fill: red;
+}
+.state-borders {
+fill: none;
+stroke: #f5f5f5;
+stroke-width: .5px;
+stroke-linejoin: none;
+stroke-linecap: none;
+pointer-events: none;
+}
+	</style>
 	<script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://d3js.org/topojson.v2.min.js"></script>
 	<script src="bundle.js"></script>
+
 </head>
 <body>
 	<div id='root'/>
